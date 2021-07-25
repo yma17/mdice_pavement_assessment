@@ -1,0 +1,8 @@
+{
+    "div_rows": 4,
+    "div_cols": 4,
+    "dist_between_pts": 5,
+    "seg_length": 100,
+    "overlap_threshold": 2,
+    "theta_threshold": 0.75
+}

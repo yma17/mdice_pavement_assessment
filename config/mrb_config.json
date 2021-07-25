@@ -1,0 +1,11 @@
+{
+    "c_mrb": 20000,
+    "benefit_pref": 1,
+    "quality_pref": 1,
+    "volume_pref": 1,
+    "bus_pref": 1,
+    "a_q": 1,
+    "a_p": 20,
+    "max_q": 7,
+    "k": 5
+}

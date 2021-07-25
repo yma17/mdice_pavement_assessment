@@ -1,0 +1,11 @@
+{
+	"fairness_pref": 1,
+	"benefit_pref": 1,
+	"a_q": 1,
+	"q": 5,
+	"a_f": 5,
+	"qual_threshold": 2.5,
+	"eval_frac_improve": 0.15,
+	"eval_gamma": 2.0,
+	"eval_KDE_bw": 0.2
+}
