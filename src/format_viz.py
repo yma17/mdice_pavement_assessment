@@ -47,14 +47,18 @@ def create_mrb_segment(df_mrb):
     w.field('ADR', 'N')
     w.field('BUS_ROUTES', 'C')
     w.field('PASER_RATING_COMP', 'N')
-    w.field('DECISION_SCORE', 'N', decimal=5)
+    w.field('DECISION_SCORE', 'N', decimal=8)
+    w.field('BENEFIT_VAL', 'N', decimal=8)
+    w.field('QUALITY_VAL', 'N', decimal=8)
+    w.field('SEL_PROB', 'N', decimal=8)
     
     for _, row in df_mrb.iterrows():
         w.record(row['lrs_link'], row['road_name'], row['from_addr'],
             row['to_addr'], row['from_zip'], row['to_zip'], row['last_rating'],
             row['paser_ratings'], row['legalsys'], row['pavings'],
             row['last_paving'], row['length'], row['aadt'], row['adr'],
-            row['routes'], row['paser_rating'], row['decision_score'])
+            row['routes'], row['paser_rating'], row['decision_score'],
+            row['benefit_val'], row['quality_val'], row['sel_prob'])
         w.multipoint(str_to_2dlist(row["points"]))
 
     w.close()

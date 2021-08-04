@@ -86,6 +86,7 @@ class MRB():
 		#####
 		length_repaired = 0
 		selected, selected_scores = [], []
+		selected_benefit, selected_quality, selected_prob = [], [], []
 		#visualized = False
 		while len(df) > 0 and length_repaired <= self.c_mrb:
 			## Compute benefit values for each road segment.
@@ -147,6 +148,9 @@ class MRB():
 
 			selected.append(sel_row["lrs_link"])
 			selected_scores.append(sel_row["weighted_l2norm"])
+			selected_benefit.append(sel_row["benefit_val"])
+			selected_quality.append(sel_row["quality_val"])
+			selected_prob.append(sel_row["prob"])
 			highest_pm_dist = sel_row["pm_dist_km"]
 			highest_eq_dist = sel_row["eq_dist_km"]
 			length_repaired += sel_row["length"]
@@ -163,6 +167,9 @@ class MRB():
 			while i < min(self.k, len(df)) and length_repaired <= self.c_mrb:
 				selected.append(df.iloc[i]["lrs_link"])
 				selected_scores.append(df.iloc[i]["weighted_l2norm"])
+				selected_benefit.append(df.iloc[i]["benefit_val"])
+				selected_quality.append(df.iloc[i]["quality_val"])
+				selected_prob.append(df.iloc[i]["prob"])
 				length_repaired += df.iloc[i]["length"]
 				i += 1
 			try:
@@ -177,6 +184,9 @@ class MRB():
 			df_selected = df_selected.append(df_seg, ignore_index=True)
 		df_selected = df_selected.drop(['pm_dist_km', 'eq_dist_km'], axis=1)
 		df_selected["decision_score"] = selected_scores
+		df_selected["benefit_val"] = selected_benefit
+		df_selected["quality_val"] = selected_quality
+		df_selected["sel_prob"] = selected_prob
 		df_selected.set_index('lrs_link', inplace=True)
 		df_selected.to_csv("../output/mrb_results.csv", index=True)
 
